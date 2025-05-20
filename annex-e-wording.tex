@@ -2,26 +2,26 @@
 \input{common}
 \settocdepth{chapter}
 \usepackage{minted}
-\usepackage{fontspec}
-\setromanfont{Source Serif Pro}
-\setsansfont{Source Sans Pro}
-% \setmonofont{Source Code Pro}
+% \usepackage{fontspec}
+% \setromanfont{Source Serif Pro}
+% \setsansfont{Source Sans Pro}
+% % \setmonofont{Source Code Pro}
 
 \begin{document}
 \title{Update Annex E onto Unicode 16}
 \author{
   Steve Downey \small<\href{mailto:sdowney@gmail.com}{sdowney@gmail.com}> \\
-  \small<\href{mailto:sdowne2y@bloomberg.net}{sdowne2y@bloomberg.net}> \\
+  \small<\href{mailto:sdowney2@bloomberg.net}{sdowney2@bloomberg.net}> \\
 }
 \date{} %unused. Type date explicitly below.
 \maketitle
 
 \begin{flushright}
   \begin{tabular}{ll}
-    Document \#: & DnnnnR0 \\
+    Document \#: & P3717R0 \\
     Date: & \today \\
     Project: & Programming Language C++ \\
-    Audience: & SG16, CWG
+    Audience: & SG16, EWG, CWG
   \end{tabular}
 \end{flushright}
 
@@ -34,7 +34,7 @@
 
 
 \chapter{Introduction}
-The current version of Unicode\copyright Standard Annex \#31 -- Unicode Identifiers and Syntax clarifies and improves some of the rules for identifiers and white space syntax. Parallel work is investigating using the new Mathematical Compatibility Notation Profile to allow certain characters such as \partial, \nabla, to better support translation of math and physics equations into C++ code. There are also opportunities to clean up the description of white space in parsing C++.
+The current version of Unicode\copyright Standard Annex \#31 -- Unicode Identifiers and Syntax clarifies and improves some of the rules for identifiers and white space syntax. Parallel work is investigating using the new Mathematical Compatibility Notation Profile to allow certain characters such as $\partial$ and $\nabla$, to better support translation of math and physics equations into C++ code. There are also opportunities to clean up the description of white space in parsing C++.
 
 This paper proposes no changes in either area. It simply updates the current Annex E to match the forms used in Unicode Annex 31 and removes a conformance point that Unicode has removed, UAX31-R1a Restricted Format Characters.
 
@@ -44,10 +44,11 @@ Strike the reference to UAX31-R1a. Update all reference names to the UAX31 form 
 
 \chapter{Wording}
 
+Update Annex E as follows.
 
 \begin{wording}
 
-\include{uax31-base}
+\include{uax31-new}
 
 \end{wording}
 

@@ -29,16 +29,16 @@ $(DEPS_DIR):
 papers: annex-e-wording.pdf base.pdf new.pdf ## Compile papers
 
 annex-e-wording.pdf : annex-e-wording.tex wg21.bib $(DEPS_DIR) | $(VENV)
-	$(SOURCE_VENV) latexmk -f -shell-escape -pdflua -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP annex-e-wording.tex
+	$(SOURCE_VENV) latexmk -f -shell-escape -pdf -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP annex-e-wording.tex
 
 base.pdf : base.tex wg21.bib $(DEPS_DIR) | $(VENV)
-	$(SOURCE_VENV) latexmk -f -shell-escape -pdflua -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP base.tex
+	$(SOURCE_VENV) latexmk -f -shell-escape -pdf -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP base.tex
 
 new.pdf : new.tex wg21.bib $(DEPS_DIR) | $(VENV)
-	$(SOURCE_VENV) latexmk -f -shell-escape -pdflua -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP new.tex
+	$(SOURCE_VENV) latexmk -f -shell-escape -pdf -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP new.tex
 
 %.pdf : %.tex | $(VENV)
-	$(SOURCE_VENV) latexmk -f -shell-escape -pdflua -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP $<
+	$(SOURCE_VENV) latexmk -f -shell-escape -pdf -use-make -deps -deps-out=$(DEPS_DIR)/$@.d -MP $<
 
 define curl_cmd =
 	curl https://wg21.link/index.bib > wg21.bib
