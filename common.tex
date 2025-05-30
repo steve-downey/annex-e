@@ -42,17 +42,22 @@
 \usepackage{url}  % urls in ref.bib
 \usepackage{tabularx}  % don't use the C++ standard's fancy tables, they come with captions!
 
-% \special{pdf:minorversion 5} %set minorversion
-% \special{pdf:compresslevel 9} %set compresslevel
-% \special{pdf:objcompresslevel 2} %set objcompresslevel
-
-% \directlua{pdf.setminorversion(5)}
-% \directlua{pdf.setcompresslevel(9)}
-% \directlua{pdf.setobjcompresslevel(2)}
-
-\pdfminorversion=5
-\pdfcompresslevel=9
-\pdfobjcompresslevel=2
+\RequirePackage{iftex}
+\ifLuaTeX
+  \directlua{pdf.setminorversion(5)}
+  \directlua{pdf.setcompresslevel(9)}
+  \directlua{pdf.setobjcompresslevel(2)}
+\fi
+\ifXeTeX
+  \special{pdf:minorversion 5} %set minorversion
+  \special{pdf:compresslevel 9} %set compresslevel
+  \special{pdf:objcompresslevel 2} %set objcompresslevel
+\fi
+\ifPDFTeX
+  \pdfminorversion=5
+  \pdfcompresslevel=9
+  \pdfobjcompresslevel=2
+\fi
 
 \renewcommand\RSsmallest{5.5pt}  % smallest font size for relsize
 
