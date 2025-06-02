@@ -48,8 +48,18 @@ where \grammarterm{identifier} is formed from
 \grammarterm{identifier-start} or
 \grammarterm{identifier} followed by \grammarterm{identifier-continue}.
 
+\begin{addedblock}
+\rSec2[uaxid.def.rfmt]{R1a Restricted format characters}
+
+\pnum
+The clause R1a has been removed from \UAX{31}.
+\begin{quote}
+The characters that were added when meeting this requirement are now part of the default; the contextual checks required by this requirement remain as part of the General Security Profile in Unicode Technical Standard \#39, “Unicode Security Mechanisms”.
+\end{quote}
+\end{addedblock}
+
 \begin{removedblock}
-\rSec2[uaxid.def.rfmt]{\added{UAX31-}R1a Restricted format characters}
+\rSec2[uaxid.def.rfmt]{R1a Restricted format characters}
 
 \pnum
 If an implementation of \UAX{31} wishes to allow format characters
@@ -60,7 +70,6 @@ describe precisely which combinations are permitted.
 \pnum
 \Cpp{} does not allow format characters in identifiers, so this does not apply.
 \end{removedblock}
-
 \rSec2[uaxid.def.stable]{R1b Stable identifiers}
 
 \pnum
@@ -73,7 +82,8 @@ Once a string qualifies as an identifier it does so in all future versions.
 except to the extent that \UAX{31} guarantees
 the stability of the XID_Start and XID_Continue properties.
 
-\rSec1[uaxid.immutable]{\added{UAX31-}R2 Immutable identifiers}
+\begin{removedblock}
+\rSec1[uaxid.immutable]{R2 Immutable identifiers}
 
 \pnum
 An implementation may choose to guarantee that
@@ -86,7 +96,7 @@ As scripts are added to Unicode,
 additional characters in those scripts may become available
 for use in identifiers.
 
-\rSec1[uaxid.pattern]{\added{UAX31-}R3 Pattern_White_Space and Pattern_Syntax characters}
+\rSec1[uaxid.pattern]{R3 Pattern_White_Space and Pattern_Syntax characters}
 
 \pnum
 \UAX{31} describes how formal languages
@@ -96,8 +106,9 @@ during the processes of lexing and parsing.
 
 \pnum
 This document does not claim conformance with this requirement from \UAX{31}.
+\end{removedblock}
 
-\rSec1[uaxid.eqn]{\added{UAX31-}R4 Equivalent normalized identifiers}
+\rSec1[uaxid.eqn]{R4 Equivalent normalized identifiers}
 
 \pnum
 \UAX{31} requires that implementations describe
@@ -108,14 +119,33 @@ This document requires that identifiers be in Normalization Form C and
 therefore identifiers that compare the same under NFC are equivalent.
 This is described in \ref{lex.name}.
 
-\rSec1[uaxid.eqci]{\added{UAX31-}R5 Equivalent case-insensitive identifiers}
+\begin{addedblock}
+  \rSec1[uaxid.nonobservance]{Requirements of \UAX{31} for which no claims are made}
+\pnum
+  \UAX{31} version 15.1 has conformance requirements which either do not apply to \Cpp{} or which this document makes no claim about.
+  \begin{itemize}
+  \item R2. Immutable Identifiers
+  \item R3. Pattern_White_Space and Pattern_Syntax Characters
+  \item R5. Equivalent Case-Insensitive Identifiers
+  \item R6. Filtered Normalized Identifiers
+  \item R7. Filtered Case-Insensitive Identifiers
+  \item R8. Hashtag Identifiers
+\end{itemize}
+
+\pnum
+This document also makes no claim about additional conformance points in any versions of \UAX{31} in versions after 15.1.
+
+\end{addedblock}
+
+\begin{removedblock}
+\rSec1[uaxid.eqci]{R5 Equivalent case-insensitive identifiers}
 
 \pnum
 This document considers case to be significant in identifier comparison, and
 does not do any case folding.
 This requirement from \UAX{31} does not apply to this document.
 
-\rSec1[uaxid.filter]{\added{UAX31-}R6 Filtered normalized identifiers}
+\rSec1[uaxid.filter]{R6 Filtered normalized identifiers}
 
 \pnum
 If any characters are excluded from normalization,
@@ -124,13 +154,14 @@ If any characters are excluded from normalization,
 \pnum
 This document does not make any such exclusions.
 
-\rSec1[uaxid.filterci]{\added{UAX31-}R7 Filtered case-insensitive identifiers}
+\rSec1[uaxid.filterci]{R7 Filtered case-insensitive identifiers}
 
 \pnum
 \Cpp{} identifiers are case sensitive, and
 therefore this requirement from \UAX{31} does not apply.
 
-\rSec1[uaxid.hashtag]{\added{UAX31-}R8 Hashtag identifiers}
+\rSec1[uaxid.hashtag]{R8 Hashtag identifiers}
 
 \pnum
 There are no hashtags in \Cpp{}, so this requirement from \UAX{31} does not apply.
+\end{removedblock}

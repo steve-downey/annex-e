@@ -2,13 +2,13 @@
 \input{common}
 \settocdepth{chapter}
 \usepackage{minted}
-% \usepackage{fontspec}
-% \setromanfont{Source Serif Pro}
-% \setsansfont{Source Sans Pro}
-% % \setmonofont{Source Code Pro}
+\usepackage{fontspec}
+\setromanfont{Source Serif Pro}
+\setsansfont{Source Sans Pro}
+\setmonofont{Source Code Pro}
 
 \begin{document}
-\title{Update Annex E onto Unicode 16}
+\title{Update Annex E onto Unicode 15.1}
 \author{
   Steve Downey \small<\href{mailto:sdowney@gmail.com}{sdowney@gmail.com}> \\
   \small<\href{mailto:sdowney2@bloomberg.net}{sdowney2@bloomberg.net}> \\
@@ -18,31 +18,34 @@
 
 \begin{flushright}
   \begin{tabular}{ll}
-    Document \#: & P3717R0 \\
+    Document \#: & D3727R0 \\
     Date: & \today \\
     Project: & Programming Language C++ \\
-    Audience: & SG16, EWG, CWG
+    Audience: & SG16, CWG
   \end{tabular}
 \end{flushright}
 
 \begin{abstract}
-  Update the non-normative Annex E to reflect Unicode 16.
-  Remove the reference to the UAX31-R1a Restricted Format Characters requirement removed from UAX31-41.
+  Update the non-normative Annex E to reflect Unicode 15.1 in order to close Core Issue \cite{CWG2843}.
 \end{abstract}
 
 \tableofcontents*
 
 
 \chapter{Introduction}
-The current version of Unicode\copyright Standard Annex \#31 -- Unicode Identifiers and Syntax clarifies and improves some of the rules for identifiers and white space syntax. Parallel work is investigating using the new Mathematical Compatibility Notation Profile to allow certain characters such as $\partial$ and $\nabla$, to better support translation of math and physics equations into C++ code. There are also opportunities to clean up the description of white space in parsing C++.
 
-This paper proposes no changes in either area. It simply updates the current Annex E to match the forms used in Unicode Annex 31 and removes a conformance point that Unicode has removed, UAX31-R1a Restricted Format Characters.
+``Unicode Standard Annex \#31: Unicode Identifiers and Syntax'' for Unicode 15.1 \cite{UAX31-15.1:online} clarifies some of the rules for identifiers and white space syntax.
+This paper proposes no normative changes in either area. It simply updates the current Annex E to match the forms used in Unicode Annex 31 as of Unicode 15.1 \cite{unicode_15_1}. See also the differences from Unicode 14 as marked up in \cite{UAX31-15.1-DIFF:online}
 
 \chapter{Proposal}
 
-Strike the reference to UAX31-R1a. Update all reference names to the UAX31 form in the current UAX31-41.
+Strike the reference to R1a Restricted Format Characters. Note that as of Unicode 15.1, \unicode{200d}{zero width joiner} and \unicode{200c}{zero width non-joiner} are part of XID_Continue, and allowed in identifiers.
+
+Replace individual disclaimed conformance points with blanket disclaimer as the conformance list is open ended.
 
 \chapter{Wording}
+
+The proposed changes are relative to \cite{N5008}.
 
 Update Annex E as follows.
 
@@ -57,5 +60,15 @@ Update Annex E as follows.
 No normative change. Modifies non-normative text describing the conformance points with the Unicode Identifier standard.
 
 \chapter*{Document history}
-Initial version.
+
+\begin{itemize}
+\item \textbf{Initial}
+  \begin{itemize}
+  \item Rework of P3717R0 on Unicode 15.1
+  \end{itemize}
+\end{itemize}
+
+\renewcommand{\bibname}{References}
+\bibliographystyle{abstract}
+\bibliography{wg21,mybiblio}
 \end{document}

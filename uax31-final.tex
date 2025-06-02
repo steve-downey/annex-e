@@ -1,0 +1,95 @@
+% \infannex{uaxid}{Conformance with \UAX{31}}
+
+\rSec1[uaxid.general]{General}
+
+\pnum
+This Annex describes the choices made in application of
+\UAX{31} (``Unicode Identifier and Pattern Syntax'')
+to \Cpp{} in terms of the requirements from \UAX{31} and
+how they do or do not apply to this document.
+In terms of \UAX{31},
+this document conforms by meeting the requirements
+R1 ``Default Identifiers'' and
+R4 ``Equivalent Normalized Identifiers'' from \UAX{31}.
+The other requirements from \UAX{31}, also listed below,
+are either alternatives not taken or do not apply to this document.
+
+\rSec1[uaxid.def]{R1 Default identifiers}
+
+\rSec2[uaxid.def.general]{General}
+\indextext{XID_Start}%
+\indextext{XID_Continue}%
+
+\pnum
+\UAX{31} specifies a default syntax for identifiers
+based on properties from the Unicode Character Database, \UAX{44}.
+The general syntax is
+\begin{outputblock}
+<Identifier> := <Start> <Continue>* (<Medial> <Continue>+)*
+\end{outputblock}
+where \tcode{<Start>} has the XID_Start property,
+\tcode{<Continue>} has the XID_Continue property, and
+\tcode{<Medial>} is a list of characters permitted between continue characters.
+For \Cpp{} we add the character \unicode{005f}{low line}, or \tcode{_},
+to the set of permitted \tcode{<Start>} characters,
+the \tcode{<Medial>} set is empty, and
+the \tcode{<Continue>} characters are unmodified.
+In the grammar used in \UAX{31}, this is
+\begin{outputblock}
+<Identifier> := <Start> <Continue>*
+<Start> := XID_Start + @\textrm{\ucode{005f}}@
+<Continue> := <Start> + XID_Continue
+\end{outputblock}
+
+\pnum
+This is described in the \Cpp{} grammar in \ref{lex.name},
+where \grammarterm{identifier} is formed from
+\grammarterm{identifier-start} or
+\grammarterm{identifier} followed by \grammarterm{identifier-continue}.
+
+\rSec2[uaxid.def.rfmt]{R1a Restricted format characters}
+
+\pnum
+The clause R1a has been removed from \UAX{31}.
+\begin{quote}
+The characters that were added when meeting this requirement are now part of the default; the contextual checks required by this requirement remain as part of the General Security Profile in Unicode Technical Standard \#39, “Unicode Security Mechanisms”.
+\end{quote}
+
+\rSec2[uaxid.def.stable]{R1b Stable identifiers}
+
+\pnum
+An implementation of \UAX{31} may choose to guarantee
+that identifiers are stable across versions of the Unicode Standard.
+Once a string qualifies as an identifier it does so in all future versions.
+
+\pnum
+\Cpp{} does not make this guarantee,
+except to the extent that \UAX{31} guarantees
+the stability of the XID_Start and XID_Continue properties.
+
+\rSec1[uaxid.eqn]{R4 Equivalent normalized identifiers}
+
+\pnum
+\UAX{31} requires that implementations describe
+how identifiers are compared and considered equivalent.
+
+\pnum
+This document requires that identifiers be in Normalization Form C and
+therefore identifiers that compare the same under NFC are equivalent.
+This is described in \ref{lex.name}.
+
+\rSec1[uaxid.nonobservance]{Requirements of \UAX{31} for which no claims are made}
+
+\pnum
+  \UAX{31} version 15.1 has conformance requirements which either do not apply to \Cpp{} or which this document makes no claim about.
+  \begin{itemize}
+  \item R2. Immutable Identifiers
+  \item R3. Pattern_White_Space and Pattern_Syntax Characters
+  \item R5. Equivalent Case-Insensitive Identifiers
+  \item R6. Filtered Normalized Identifiers
+  \item R7. Filtered Case-Insensitive Identifiers
+  \item R8. Hashtag Identifiers
+\end{itemize}
+
+\pnum
+This document also makes no claim about additional conformance points in any versions of \UAX{31} in versions after 15.1.
